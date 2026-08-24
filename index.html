@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>48 Ways to Track My Phone</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Animated background -->
+    <div class="background"></div>
+    <div class="stars"></div>
+
+    <!-- ================= WELCOME PAGE ================= -->
+    <section id="welcomePage" class="page active">
+
+        <div class="welcome-container">
+
+            <div class="logo48">48</div>
+
+        
+            <h3>WELCOME TO THE</h3>
+
+            <h1>48 GATES OF HEAVEN</h1>
+
+            <p class="subtitle">
+                Your Safety. Your Device. Your Connection.
+            </p>
+
+            <p class="created-by">
+                Created by <strong>Prosperity Mwape</strong>
+            </p>
+
+            <button class="main-btn" onclick="showPage('authPage')">
+                ENTER THE GATES
+                <span>→</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SIGN IN / CREATE ACCOUNT ================= -->
+    <section id="authPage" class="page">
+
+        <div class="auth-container">
+
+            <div class="mini-logo">48</div>
+
+            <h1>48 WAYS TO TRACK MY PHONE</h1>
+
+            <p>Secure. Connected. Ready when you need help.</p>
+
+            <div class="auth-buttons">
+                <button onclick="showForm('signin')">SIGN IN</button>
+                <button onclick="showForm('signup')">CREATE ACCOUNT</button>
+            </div>
+
+
+            <!-- SIGN IN FORM -->
+            <div id="signinForm" class="form-box">
+
+                <h2>WELCOME BACK</h2>
+
+                <input type="email" id="loginEmail"
+                    placeholder="Enter your email">
+
+                <input type="password" id="loginPassword"
+                    placeholder="Enter your website password">
+
+                <button class="main-btn"
+                    onclick="signIn()">
+                    SIGN IN
+                </button>
+
+            </div>
+
+
+            <!-- CREATE ACCOUNT FORM -->
+            <div id="signupForm" class="form-box">
+
+                <h2>CREATE YOUR ACCOUNT</h2>
+
+                <label>Profile Photo</label>
+                <input type="file" id="profilePhoto"
+                    accept="image/*">
+
+                <label>Email Address</label>
+                <input type="email" id="email"
+                    placeholder="example@email.com">
+
+                <label>Phone Number</label>
+                <input type="tel" id="phone"
+                    placeholder="+260...">
+
+                <label>Phone Serial Number</label>
+                <input type="text" id="serial"
+                    placeholder="Enter device serial number">
+
+                <label>Apple ID / iCloud Email (Optional)</label>
+                <input type="email" id="icloud"
+                    placeholder="example@icloud.com">
+
+                <label>Create Website Password</label>
+                <input type="password" id="password"
+                    placeholder="Create a password for this website">
+
+                <div class="location-box">
+                    <div>
+                        <h3>📍 ENABLE LOCATION PROTECTION</h3>
+                        <p>
+                            Allow location access now. If you later report
+                            that you have lost your phone or need help,
+                            the website can request your location for
+                            your emergency alert.
+                        </p>
+                    </div>
+
+                    <button type="button"
+                        onclick="enableLocation()">
+                        ENABLE LOCATION
+                    </button>
+                </div>
+
+                <button class="main-btn"
+                    onclick="createAccount()">
+                    CREATE ACCOUNT
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= USER DASHBOARD ================= -->
+    <section id="dashboardPage" class="page">
+
+        <div class="dashboard">
+
+            <div class="dashboard-header">
+
+                <div>
+                    <div class="mini-logo">48</div>
+                    <h1>MY PROTECTION CENTER</h1>
+                </div>
+
+                <button class="logout-btn"
+                    onclick="showPage('welcomePage')">
+                    LOG OUT
+                </button>
+
+            </div>
+
+
+            <div class="welcome-user">
+                <h2 id="userWelcome">
+                    Welcome
+                </h2>
+
+                <p>
+                    What do you need help with today?
+                </p>
+            </div>
+
+
+            <div class="dashboard-cards">
+
+                <div class="action-card"
+                    onclick="myPhone()">
+
+                    <div class="card-icon">📱</div>
+
+                    <h2>MY PHONE</h2>
+
+                    <p>
+                        View your registered device information.
+                    </p>
+
+                </div>
+
+
+                <div class="action-card danger"
+                    onclick="sendAlert('LOST PHONE')">
+
+                    <div class="card-icon">🚨</div>
+
+                    <h2>I'VE LOST MY PHONE</h2>
+
+                    <p>
+                        Send an immediate report to the 48 Admin Dashboard.
+                    </p>
+
+                </div>
+
+
+                <div class="action-card emergency"
+                    onclick="sendAlert('I NEED HELP')">
+
+                    <div class="card-icon">🆘</div>
+
+                    <h2>I NEED HELP</h2>
+
+                    <p>
+                        Send an urgent help request with your location,
+                        if available.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="statusMessage" class="status-message"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ALERT SCREEN ================= -->
+    <section id="alertPage" class="page">
+
+        <div class="alert-screen">
+
+            <div class="alert-pulse">🚨</div>
+
+            <h1 id="alertTitle">
+                ALERT SENT
+            </h1>
+
+            <p id="alertText">
+                Your request has been sent.
+            </p>
+
+            <div class="location-status"
+                id="locationStatus">
+
+                📍 Checking location...
+
+            </div>
+
+            <button class="main-btn"
+                onclick="showPage('dashboardPage')">
+                RETURN TO DASHBOARD
+            </button>
+
+        </div>
+
+    </section>
+<!-- ================= ADMIN DASHBOARD ================= -->
+
+<section id="adminPage" class="page">
+
+    <div class="admin-dashboard">
+
+        <div class="admin-header">
+
+            <div>
+                <div class="mini-logo">48</div>
+
+                <div>
+                    <h1>48 ADMIN CONTROL</h1>
+                    <p>Welcome, Prosperity</p>
+                </div>
+            </div>
+
+            <button class="logout-btn"
+                onclick="closeAdmin()">
+                CLOSE ADMIN
+            </button>
+
+        </div>
+
+
+        <!-- ADMIN STATISTICS -->
+
+        <div class="admin-stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">👥</div>
+
+                <p>TOTAL ACCOUNTS</p>
+
+                <h2 id="totalAccounts">0</h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🚨</div>
+
+                <p>LOST PHONE ALERTS</p>
+
+                <h2 id="lostAlerts">0</h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🆘</div>
+
+                <p>HELP REQUESTS</p>
+
+                <h2 id="helpAlerts">0</h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🔔</div>
+
+                <p>NEW NOTIFICATIONS</p>
+
+                <h2 id="newNotifications">0</h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN TABS -->
+
+        <div class="admin-tabs">
+
+            <button onclick="showAdminSection('alerts')">
+                🚨 ALERTS
+            </button>
+
+            <button onclick="showAdminSection('users')">
+                👥 USERS
+            </button>
+
+            <button onclick="showAdminSection('notifications')">
+                🔔 NOTIFICATIONS
+            </button>
+
+        </div>
+
+
+        <!-- ALERTS -->
+
+        <div id="adminAlerts"
+            class="admin-section active-admin-section">
+
+            <h2>🚨 RECENT ALERTS</h2>
+
+            <div id="alertsList"
+                class="admin-list">
+
+            </div>
+
+        </div>
+
+
+        <!-- USERS -->
+
+        <div id="adminUsers"
+            class="admin-section">
+
+            <h2>👥 REGISTERED USERS</h2>
+
+            <div id="usersList"
+                class="admin-list">
+
+            </div>
+
+        </div>
+
+
+        <!-- NOTIFICATIONS -->
+
+        <div id="adminNotifications"
+            class="admin-section">
+
+            <h2>🔔 ADMIN NOTIFICATIONS</h2>
+
+            <div id="notificationsList"
+                class="admin-list">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    
+    <script src="script.js"></script>
+
+</body>
+</html>
